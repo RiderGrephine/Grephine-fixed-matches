@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Grephine Fixed Matches - Kiswahili</title>
+  <style>
+    :root {
+      --bg: #0b1220; --panel: #121d30; --panel2: #17253b; --text: #f4f7fb;
+      --muted: #a8b5c8; --accent: #22c55e; --accent2: #16a34a; --line: #293951;
+      --gold: #fbbf24; --danger: #fb7185;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+    a { color: inherit; text-decoration: none; }
+    button, input, select { font: inherit; }
+    .wrap { width: min(1120px, 92%); margin: auto; }
+    header { position: sticky; top: 0; z-index: 10; background: rgba(11,18,32,.94); border-bottom: 1px solid var(--line); backdrop-filter: blur(12px); }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:20px; padding:15px 0; }
+    .brand { font-weight: 900; letter-spacing: -.4px; font-size: 1.05rem; }
+    .brand span { color: var(--accent); }
+    nav { display:flex; flex-wrap:wrap; gap:18px; color:var(--muted); font-size:.93rem; }
+    nav a:hover { color:var(--text); }
+    .btn { display:inline-flex; align-items:center; justify-content:center; border:0; border-radius:10px; padding:11px 16px; background:var(--accent); color:#06210f; font-weight:800; cursor:pointer; }
+    .btn:hover { background:#4ade80; }
+    .btn.secondary { background:transparent; color:var(--text); border:1px solid var(--line); }
+    .hero { padding:76px 0 54px; background: radial-gradient(ellipse at 80% 10%, rgba(34,197,94,.15), transparent 45%); }
+    .hero-grid { display:grid; grid-template-columns:1.25fr .75fr; gap:35px; align-items:center; }
+    .eyebrow { color:var(--accent); text-transform:uppercase; font-weight:900; font-size:.78rem; letter-spacing:1.8px; }
+    h1 { font-size:clamp(2.35rem, 6vw, 4.5rem); line-height:1.04; letter-spacing:-2px; margin:14px 0 20px; }
+    h1 span { color:var(--accent); }
+    .lead { color:var(--muted); max-width:650px; font-size:1.08rem; }
+    .actions { display:flex; flex-wrap:wrap; gap:12px; margin-top:25px; }
+    .hero-card, .card { background:linear-gradient(150deg, var(--panel), #101a2b); border:1px solid var(--line); border-radius:18px; padding:23px; }
+    .hero-card h3 { margin:0 0 12px; }
+    .stat { display:flex; justify-content:space-between; gap:14px; padding:12px 0; border-bottom:1px solid var(--line); }
+    .stat:last-child { border-bottom:0; }
+    .stat span { color:var(--muted); }
+    section { padding:44px 0; }
+    .section-title { margin:0 0 8px; font-size:clamp(1.65rem, 3vw, 2.3rem); }
+    .section-sub { margin:0 0 24px; color:var(--muted); }
+    .grid3 { display:grid; grid-template-columns:repeat(3,1fr); gap:17px; }
+    .card h3 { margin:0 0 9px; }
+    .icon { font-size:1.8rem; margin-bottom:10px; }
+    .card p { color:var(--muted); margin:0; }
+    .plan { border-color:rgba(34,197,94,.55); position:relative; }
+    .badge { display:inline-block; color:#05210e; background:var(--accent); border-radius:100px; padding:4px 10px; font-size:.75rem; font-weight:900; }
+    .terms { display:grid; grid-template-columns:1fr 1fr; gap:18px; }
+    .calculator { display:grid; grid-template-columns:1fr 1fr; gap:24px; align-items:start; }
+    label { display:block; color:var(--muted); font-size:.9rem; margin:13px 0 6px; }
+    input, select { width:100%; background:#0b1423; color:var(--text); border:1px solid var(--line); border-radius:9px; padding:12px; outline:none; }
+    input:focus, select:focus { border-color:var(--accent); }
+    .result { background:#0a1722; border:1px solid rgba(34,197,94,.4); border-radius:14px; padding:18px; margin-top:16px; }
+    .result .amount { font-size:2rem; font-weight:900; color:var(--accent); }
+    .small { font-size:.85rem; color:var(--muted); }
+    .warning { border-left:4px solid var(--gold); background:rgba(251,191,36,.08); padding:14px 16px; border-radius:8px; color:#f5df9b; font-size:.9rem; }
+    .payment-list { display:flex; flex-wrap:wrap; gap:9px; margin-top:14px; }
+    .payment-list span { border:1px solid var(--line); border-radius:9px; padding:8px 11px; background:var(--panel2); }
+    .payment-number { font-size:1.15rem; font-weight:800; overflow-wrap:anywhere; color:var(--accent); }
+    .fee-highlight { font-size:1.8rem; font-weight:900; color:var(--accent); margin:8px 0 16px; }
+    .copy-btn { margin-top:12px; cursor:pointer; }
+    .proof-form { margin-top:24px; padding-top:20px; border-top:1px solid var(--line); }
+    .proof-form label { color:var(--text); font-weight:700; }
+    .proof-actions { display:flex; flex-wrap:wrap; gap:10px; margin-top:16px; }
+    #screenshotPreview { display:none; max-width:100%; max-height:280px; margin-top:14px; border:1px solid var(--line); border-radius:12px; }
+    .notice { margin-top:12px; padding:12px 14px; background:rgba(34,197,94,.08); border:1px solid rgba(34,197,94,.3); border-radius:10px; }
+    footer { border-top:1px solid var(--line); padding:26px 0 38px; color:var(--muted); font-size:.88rem; }
+    .footer-row { display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap; }
+    .admin-note { color:var(--muted); font-size:.83rem; }
+    @media (max-width:760px) {
+      .hero-grid, .grid3, .terms, .calculator { grid-template-columns:1fr; }
+      .hero { padding-top:52px; }
+      nav { display:none; }
+      h1 { letter-spacing:-1.2px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a class="brand" href="#home">GREPHINE <span>FIXED MATCHES</span></a>
+      <nav>
+        <a href="#services">Huduma</a>
+        <a href="#betting-sites">Betting Sites</a>
+        <a href="#membership">Uanachama</a>
+        <a href="#calculator">Kikokotoo cha 40%</a>
+        <a href="#payments">Malipo</a>
+      </nav>
+      <a class="btn" href="#membership">Tazama Mpango</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="eyebrow">Uchambuzi • Taarifa • Uanachama</div>
+          <h1>Karibu kwenye <span>Grephine</span> Fixed Matches</h1>
+          <p class="lead">Hapa utapata uchambuzi wa mechi, maoni ya matokeo sahihi na taarifa za michezo ya virtual. Soma masharti ya uanachama kabla ya kujiunga na fanya maamuzi yako mwenyewe.</p>
+          <div class="actions">
+            <a class="btn" href="#membership">Chunguza Uanachama</a>
+            <a class="btn secondary" href="#services">Chunguza Huduma</a>
+          </div>
+          <p class="small" style="margin-top:16px;">Hakuna utabiri unaohakikisha ushindi. Cheza kwa uwajibikaji na tumia pesa unazoweza kumudu kupoteza tu.</p>
+        </div>
+        <div class="hero-card">
+          <span class="badge">MUHTASARI WA UANACHAMA</span>
+          <h3 style="margin-top:15px;">Kipindi cha miezi mitatu</h3>
+          <div class="stat"><span>Kipindi cha mwanzo</span><strong>miezi 3</strong></div>
+          <div class="stat"><span>Sehemu iliyokubaliwa baada ya tathmini</span><strong>40% ya ushindi</strong></div>
+          <div class="stat"><span>Njia za malipo</span><strong>Pesa kwa simu*</strong></div>
+          <p class="small">*Upatikanaji wa huduma na uchakataji wa malipo uthibitishwe na msimamizi wa tovuti.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <h2 class="section-title">Huduma Zetu</h2>
+        <p class="section-sub">Panga maudhui ambayo wanachama wanaweza kupata.</p>
+        <div class="grid3">
+          <article class="card"><div class="icon">⚽</div><h3>Uchambuzi wa Mechi</h3><p>Maelezo kabla ya mechi, mwenendo wa timu na taarifa nyingine za kuwasaidia wanachama kutathmini mechi.</p></article>
+          <article class="card"><div class="icon">🎯</div><h3>Mapendekezo ya Matokeo Sahihi</h3><p>Maoni kuhusu matokeo yanawasilishwa kama utabiri, si matokeo yaliyohakikishwa.</p></article>
+          <article class="card"><div class="icon">🎮</div><h3>Michezo ya Virtual</h3><p>Sehemu ya taarifa za michezo ya virtual pale sheria za eneo na masharti ya mtoa huduma yanaporuhusu.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="betting-sites">
+      <div class="wrap">
+        <h2 class="section-title">Tovuti za Betting</h2>
+        <p class="section-sub">Chagua tovuti unayotumia. Viungo vinafunguka kwenye kichupo kipya; upatikanaji na anwani rasmi hutegemea nchi na sheria za eneo lako.</p>
+        <div class="grid3">
+          <article class="card"><div class="icon">🎯</div><h3>BetPawa</h3><p>Tembelea tovuti ya BetPawa.</p><p style="margin-top:14px"><a class="btn" href="https://www.betpawa.co.tz/" target="_blank" rel="noopener noreferrer">Fungua BetPawa ↗</a></p></article>
+          <article class="card"><div class="icon">⚽</div><h3>SportPesa</h3><p>Tembelea tovuti ya SportPesa.</p><p style="margin-top:14px"><a class="btn" href="https://www.sportpesa.co.tz/" target="_blank" rel="noopener noreferrer">Fungua SportPesa ↗</a></p></article>
+          <article class="card"><div class="icon">🏆</div><h3>Odibets</h3><p>Tembelea tovuti ya Odibets.</p><p style="margin-top:14px"><a class="btn" href="https://www.odibets.com/" target="_blank" rel="noopener noreferrer">Fungua Odibets ↗</a></p></article>
+          <article class="card"><div class="icon">🎲</div><h3>Betika</h3><p>Tembelea tovuti ya Betika.</p><p style="margin-top:14px"><a class="btn" href="https://www.betika.com/" target="_blank" rel="noopener noreferrer">Fungua Betika ↗</a></p></article>
+          <article class="card"><div class="icon">⚡</div><h3>Mozzart Bet</h3><p>Tembelea tovuti ya Mozzart Bet.</p><p style="margin-top:14px"><a class="btn" href="https://www.mozzartbet.co.tz/" target="_blank" rel="noopener noreferrer">Fungua Mozzart Bet ↗</a></p></article>
+          <article class="card"><div class="icon">🌍</div><h3>1xBet</h3><p>Tembelea tovuti ya 1xBet.</p><p style="margin-top:14px"><a class="btn" href="https://1xbet.com/" target="_blank" rel="noopener noreferrer">Fungua 1xBet ↗</a></p></article>
+          <article class="card"><div class="icon">🎯</div><h3>MelBet</h3><p>Tembelea tovuti ya MelBet.</p><p style="margin-top:14px"><a class="btn" href="https://melbet.com/" target="_blank" rel="noopener noreferrer">Fungua MelBet ↗</a></p></article>
+          <article class="card"><div class="icon">🏟️</div><h3>Betway</h3><p>Tembelea tovuti ya Betway.</p><p style="margin-top:14px"><a class="btn" href="https://www.betway.com/" target="_blank" rel="noopener noreferrer">Fungua Betway ↗</a></p></article>
+          <article class="card"><div class="icon">⚽</div><h3>Shabiki</h3><p>Tembelea tovuti ya Shabiki.</p><p style="margin-top:14px"><a class="btn" href="https://shabiki.com/" target="_blank" rel="noopener noreferrer">Fungua Shabiki ↗</a></p></article>
+          <article class="card"><div class="icon">🎮</div><h3>BangBet</h3><p>Tembelea tovuti ya BangBet.</p><p style="margin-top:14px"><a class="btn" href="https://bangbet.com/" target="_blank" rel="noopener noreferrer">Fungua BangBet ↗</a></p></article>
+          <article class="card"><div class="icon">🏆</div><h3>Premier Bet</h3><p>Tembelea tovuti ya Premier Bet.</p><p style="margin-top:14px"><a class="btn" href="https://www.premierbet.com/" target="_blank" rel="noopener noreferrer">Fungua Premier Bet ↗</a></p></article>
+          <article class="card"><div class="icon">🌐</div><h3>Dafabet</h3><p>Tembelea tovuti ya Dafabet.</p><p style="margin-top:14px"><a class="btn" href="https://www.dafabet.com/" target="_blank" rel="noopener noreferrer">Fungua Dafabet ↗</a></p></article>
+          <article class="card"><div class="icon">🎯</div><h3>Hollywoodbets</h3><p>Tembelea tovuti ya Hollywoodbets.</p><p style="margin-top:14px"><a class="btn" href="https://www.hollywoodbets.net/" target="_blank" rel="noopener noreferrer">Fungua Hollywoodbets ↗</a></p></article>
+          <article class="card"><div class="icon">⚽</div><h3>MSport</h3><p>Tembelea tovuti ya MSport.</p><p style="margin-top:14px"><a class="btn" href="https://www.msport.com/" target="_blank" rel="noopener noreferrer">Fungua MSport ↗</a></p></article>
+          <article class="card"><div class="icon">🎲</div><h3>Meridianbet</h3><p>Tembelea tovuti ya Meridianbet.</p><p style="margin-top:14px"><a class="btn" href="https://www.meridianbet.com/" target="_blank" rel="noopener noreferrer">Fungua Meridianbet ↗</a></p></article>
+          <article class="card"><div class="icon">🍀</div><h3>LuckyBet</h3><p>Tembelea tovuti ya LuckyBet.</p><p style="margin-top:14px"><a class="btn" href="https://luckybet.com/" target="_blank" rel="noopener noreferrer">Fungua LuckyBet ↗</a></p></article>
+          <article class="card"><div class="icon">🌍</div><h3>22Bet</h3><p>Tembelea tovuti ya 22Bet.</p><p style="margin-top:14px"><a class="btn" href="https://22bet.com/" target="_blank" rel="noopener noreferrer">Fungua 22Bet ↗</a></p></article>
+          <article class="card"><div class="icon">🏅</div><h3>LeonBet</h3><p>Tembelea tovuti ya LeonBet.</p><p style="margin-top:14px"><a class="btn" href="https://leon.bet/" target="_blank" rel="noopener noreferrer">Fungua LeonBet ↗</a></p></article>
+        </div>
+        <p class="small" style="margin-top:18px">Tahadhari: Orodha hii si uthibitisho wa leseni au upatikanaji katika nchi yako. Hakikisha tovuti ina leseni halali eneo lako, fuata masharti ya umri, na cheza kwa uwajibikaji.</p>
+      </div>
+    </section>
+
+    <section id="membership">
+      <div class="wrap">
+        <h2 class="section-title">Mpango wa Uanachama</h2>
+        <p class="section-sub">Soma na ukubaliane na masharti kabla ya kujisajili.</p>
+        <div class="terms">
+          <article class="card plan">
+            <span class="badge">MPANGO WA MIEZI 3</span>
+            <h3 style="font-size:1.5rem;margin-top:14px;">Usajili na kipindi cha tathmini</h3>
+            <p>Ada ya usajili</p>
+            <div class="fee-highlight">TSh 5,000</div>
+            <p>Wanachama hujisajili na kutumia huduma kwa kipindi cha miezi mitatu kilichokubaliwa. Hifadhi kumbukumbu zilizo wazi za kila dau, kiasi kilichowekwa, malipo ya ushindi na matokeo.</p>
+            <ul style="padding-left:20px;color:var(--muted);">
+              <li>Rekodi matokeo katika kipindi chote cha miezi mitatu.</li>
+              <li>Kagua kumbukumbu pamoja mwishoni mwa kipindi.</li>
+              <li>Hesabu sehemu ya 40% iliyokubaliwa kwa kutumia utaratibu wa ushindi uliofafanuliwa.</li>
+            </ul>
+          </article>
+          <article class="card">
+            <h3>Jinsi 40% inavyohesabiwa</h3>
+            <p>Baada ya miezi mitatu, weka jumla ya ushindi uliokubaliwa kwenye kikokotoo hapa chini. Kitahesabu 40% kama kiasi kinacholipwa na 60% kama kiasi kinachobaki.</p>
+            <div class="warning" style="margin-top:18px;">Muhimu: mfano ulio hapa chini unatumia jumla ya malipo ya ushindi na hauondoi dau zilizopotea au kiasi kilichowekwa. Andikeni utaratibu kamili wa hesabu na mkubaliane kabla ya mtu yeyote kujiunga.</div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="calculator">
+      <div class="wrap">
+        <h2 class="section-title">Kikokotoo cha Ushindi wa Miezi Mitatu</h2>
+        <p class="section-sub">Kikokotoo rahisi cha kukadiria sehemu ya 40% iliyokubaliwa.</p>
+        <div class="calculator">
+          <div class="card">
+            <h3>Weka jumla ya ushindi</h3>
+            <label for="currency">Sarafu</label>
+            <select id="currency">
+              <option value="TSh">TSh — Shilingi ya Tanzania</option>
+              <option value="KSh">KSh — Shilingi ya Kenya</option>
+              <option value="$">$ — Dola ya Marekani</option>
+              <option value="UGX">UGX — Shilingi ya Uganda</option>
+            </select>
+            <label for="winnings">Jumla ya ushindi uliorekodiwa kwa miezi 3</label>
+            <input id="winnings" type="number" min="0" step="0.01" placeholder="mf. 100000" />
+            <button class="btn" style="margin-top:15px;width:100%;" id="calculateBtn">Hesabu Sehemu ya 40%</button>
+            <p class="small" style="margin-top:12px;">Kikokotoo hiki hakihakiki kumbukumbu za dau wala kuchakata malipo.</p>
+          </div>
+          <div class="card">
+            <h3>Matokeo ya hesabu</h3>
+            <div class="result">
+              <div class="small">Sehemu ya 40% inayolipwa kwa Grephine Fixed Matches</div>
+              <div class="amount" id="share">TSh 0.00</div>
+            </div>
+            <div class="stat"><span>Jumla ya ushindi ulioingizwa</span><strong id="total">TSh 0.00</strong></div>
+            <div class="stat"><span>60% inayobaki</span><strong id="remaining">TSh 0.00</strong></div>
+            <p class="small" id="calcMessage" aria-live="polite">Weka jumla ya ushindi ili kuona hesabu.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="payments">
+      <div class="wrap">
+        <h2 class="section-title">Njia za Malipo</h2>
+        <p class="section-sub">Onyesha njia za malipo unazotumia kweli.</p>
+        <div class="card">
+          <h3>Ada ya usajili: TSh 5,000</h3>
+          <p>Chagua nchi na mtandao unaotumia. Hakikisha namba ya mpokeaji na kiasi kabla ya kutuma malipo.</p>
+
+          <p class="notice small">Vodacom M-Pesa na Tigo Pesa: Tanzania (TSh 5,000). Airtel Money Kenya: KES — kiasi kitawekwa kwenye usanidi wa API.</p>
+
+          <label for="paymentNetwork">📱 Chagua mtandao wa malipo</label>
+          <select id="paymentNetwork" name="paymentNetwork" required>
+            <option value="">-- Chagua mtandao --</option>
+            <option value="VODACOM_TZ">Vodacom M-Pesa — Tanzania (TZS)</option>
+            <option value="TIGO_TZ">Tigo Pesa — Tanzania (TZS)</option>
+            <option value="AIRTEL_KE">Airtel Money — Kenya (KES)</option>
+          </select>
+
+          <label for="stkPhone">📞 Namba ya simu ya kupokea ombi la malipo</label>
+          <input type="tel" id="stkPhone" name="stkPhone" placeholder="Tanzania: 07XXXXXXXX / Kenya: 07XXXXXXXX" autocomplete="tel" required />
+          <button class="btn copy-btn" type="button" id="stkPushBtn">Tuma Ombi la STK Push</button>
+          <p class="small" id="stkPushMessage" aria-live="polite">STK Push itafanya kazi baada ya kuunganishwa na API rasmi ya mtandao uliochagua. PIN itaingizwa kwenye dirisha rasmi la mtoa huduma, si kwenye website.</p>
+
+          <p><strong>Mawasiliano ya msimamizi (si namba iliyothibitishwa ya kupokea malipo)</strong></p>
+          <p class="payment-number" id="paymentNumber">+254745427485</p>
+          <p><strong>Jina:</strong> Kiprotich Kirui</p>
+          <p class="small">Ombi la STK Push hutumwa kupitia API baada ya kuweka credentials za biashara kwenye backend. Kwa Airtel Money Kenya, kiasi cha KES lazima kiwekwe kwenye usanidi.</p>
+          <p class="small" id="copyMessage" aria-live="polite"></p>
+          <div class="payment-list"><span>Usajili: TSh 5,000</span><span>Kipindi cha huduma: miezi 3</span><span>Sehemu iliyokubaliwa: 40% ya ushindi</span></div>
+          <p class="small" style="margin-top:14px;">Ombi la STK Push halimaanishi kuwa malipo yamekamilika. Thibitisha hali ya muamala kupitia API/callback ya mtoa huduma. Usishiriki PIN yako au nenosiri la matumizi ya mara moja.</p>
+
+          <div class="proof-form" id="payment-proof">
+            <h3>📸 Tuma Screenshot ya Muamala</h3>
+            <p class="small">Baada ya kukamilisha malipo, jaza taarifa zako na uchague screenshot ya uthibitisho. Kisha bonyeza kitufe cha WhatsApp na uambatishe picha kwenye mazungumzo kabla ya kuituma.</p>
+            <form id="paymentProofForm">
+              <label for="proofName">Jina lako kamili</label>
+              <input type="text" id="proofName" placeholder="Andika jina lako" required />
+
+              <label for="proofPhone">Namba yako ya simu</label>
+              <input type="tel" id="proofPhone" placeholder="Mfano: +255... au +254..." required />
+
+              <label for="proofTransaction">Namba ya muamala (Transaction ID)</label>
+              <input type="text" id="proofTransaction" placeholder="Weka namba ya muamala" required />
+
+              <label for="proofScreenshot">Pakia screenshot ya muamala</label>
+              <input type="file" id="proofScreenshot" accept="image/*" required />
+              <img id="screenshotPreview" alt="Muonekano wa screenshot iliyochaguliwa" />
+
+              <div class="proof-actions">
+                <button class="btn" type="submit">Endelea Kutuma kwa WhatsApp</button>
+                <button class="btn secondary" type="button" id="clearProofBtn">Futa Taarifa</button>
+              </div>
+              <p id="proofMessage" class="small" aria-live="polite"></p>
+              <div class="notice small"><strong>Kumbuka:</strong> Website hii haiwezi kuambatisha picha kwenye WhatsApp moja kwa moja. Itafungua mazungumzo na ujumbe ulioandaliwa; ambatisha screenshot uliyochagua kwenye WhatsApp kisha bonyeza Tuma.</div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="responsible">
+      <div class="wrap">
+        <div class="warning"><strong>Uchezaji wa kamari kwa uwajibikaji:</strong> Kamari inaweza kusababisha upotevu wa fedha na ushindi haujahakikishwa. Fuata sheria za eneo lako na masharti ya umri. Makubaliano ya 40% yanapaswa kuwa wazi, yaandikwe, na yapitiwe kwa kupata ushauri wa kisheria unaofaa kabla ya kuanza.</div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-row">
+      <div><strong style="color:var(--text);">Grephine Fixed Matches</strong><br />Taarifa za mechi na uanachama</div>
+      <div>© <span id="year"></span> Grephine Fixed Matches. Haki zote zimehifadhiwa.</div>
+    </div>
+  </footer>
+
+  <script>
+    const winningsInput = document.getElementById('winnings');
+    const currencyInput = document.getElementById('currency');
+    const shareEl = document.getElementById('share');
+    const totalEl = document.getElementById('total');
+    const remainingEl = document.getElementById('remaining');
+    const messageEl = document.getElementById('calcMessage');
+
+    function money(value) {
+      const currency = currencyInput.value;
+      return currency + ' ' + Number(value).toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      });
+    }
+
+    function calculate() {
+      const total = Math.max(0, Number(winningsInput.value) || 0);
+      const share = total * 0.40;
+      const remaining = total * 0.60;
+      shareEl.textContent = money(share);
+      totalEl.textContent = money(total);
+      remainingEl.textContent = money(remaining);
+      messageEl.textContent = total > 0
+        ? 'Imehesabiwa: 40% ya ushindi ulioingizwa. Hakikisha kiasi kwa kulinganisha na kumbukumbu mlizokubaliana.'
+        : 'Weka jumla ya ushindi ili kuona hesabu.';
+    }
+
+    document.getElementById('calculateBtn').addEventListener('click', calculate);
+    winningsInput.addEventListener('input', calculate);
+    currencyInput.addEventListener('change', calculate);
+    document.getElementById('year').textContent = new Date().getFullYear();
+    const paymentNetwork = document.getElementById('paymentNetwork');
+    const stkPhone = document.getElementById('stkPhone');
+    const stkPushMessage = document.getElementById('stkPushMessage');
+
+    // API keys huhifadhiwa kwenye backend pekee, kamwe si ndani ya HTML.
+    const STK_PUSH_API_URL = '/api/payment-request';
+    paymentNetwork.addEventListener('change', () => {
+      const isKenya = paymentNetwork.value === 'AIRTEL_KE';
+      stkPhone.placeholder = isKenya ? 'Kenya: 07XXXXXXXX au 2547XXXXXXXX' : 'Tanzania: 07XXXXXXXX au 2557XXXXXXXX';
+      stkPushMessage.textContent = isKenya
+        ? 'Airtel Money Kenya itatoza KES. Kiasi lazima kiwekwe kwenye usanidi wa backend.'
+        : 'Vodacom M-Pesa/Tigo Pesa Tanzania: ada ya usajili ni TSh 5,000.';
+    });
+
+    document.getElementById('stkPushBtn').addEventListener('click', async () => {
+      const network = paymentNetwork.value;
+      const phone = stkPhone.value.trim();
+      if (!network || !phone) {
+        stkPushMessage.textContent = 'Tafadhali chagua mtandao na uweke namba ya simu.';
+        return;
+      }
+      stkPushMessage.textContent = 'Inatuma ombi la malipo...';
+      try {
+        const response = await fetch(STK_PUSH_API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ network, phone })
+        });
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.message || 'Ombi la malipo limeshindwa.');
+        stkPushMessage.textContent = (data.message || 'Ombi limetumwa.') + ' Fuata maelekezo kwenye simu yako. PIN haiingizwe kwenye website.';
+      } catch (error) {
+        stkPushMessage.textContent = error.message || 'Ombi halikuweza kutumwa. Hakikisha API credentials zimewekwa na ujaribu tena.';
+      }
+    });
+    const proofInput = document.getElementById('proofScreenshot');
+    const proofPreview = document.getElementById('screenshotPreview');
+    let previewUrl = null;
+    proofInput.addEventListener('change', () => {
+      const file = proofInput.files && proofInput.files[0];
+      const msg = document.getElementById('proofMessage');
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = null;
+      if (!file) {
+        proofPreview.style.display = 'none';
+        proofPreview.removeAttribute('src');
+        return;
+      }
+      if (!file.type.startsWith('image/')) {
+        proofInput.value = '';
+        proofPreview.style.display = 'none';
+        msg.textContent = 'Tafadhali chagua picha ya screenshot.';
+        return;
+      }
+      if (file.size > 8 * 1024 * 1024) {
+        proofInput.value = '';
+        proofPreview.style.display = 'none';
+        msg.textContent = 'Picha ni kubwa sana. Tafadhali chagua picha isiyozidi 8 MB.';
+        return;
+      }
+      previewUrl = URL.createObjectURL(file);
+      proofPreview.src = previewUrl;
+      proofPreview.style.display = 'block';
+      msg.textContent = 'Screenshot imechaguliwa. Baada ya WhatsApp kufunguka, ambatisha picha hii kwenye mazungumzo.';
+    });
+
+    document.getElementById('paymentProofForm').addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('proofName').value.trim();
+      const phone = document.getElementById('proofPhone').value.trim();
+      const transaction = document.getElementById('proofTransaction').value.trim();
+      const network = paymentNetwork.value;
+      const file = proofInput.files && proofInput.files[0];
+      const msg = document.getElementById('proofMessage');
+      if (!network) {
+        msg.textContent = 'Tafadhali chagua mtandao wa malipo wa Tanzania kwanza.';
+        return;
+      }
+      if (!file) {
+        msg.textContent = 'Tafadhali pakia screenshot ya muamala kwanza.';
+        return;
+      }
+      const text = `Habari Grephine Fixed Matches, nimetuma ada ya usajili.\nJina: ${name}\nSimu: ${phone}\nNchi: Tanzania\nMtandao: ${network}\nTransaction ID: ${transaction}\nKiasi: TSh 5,000\nNitatuma screenshot ya muamala kama kiambatisho hapa.`;
+      msg.textContent = 'WhatsApp inafunguka. Tafadhali ambatisha screenshot kwenye mazungumzo na uitume ili msimamizi aipokee.';
+      window.open('https://wa.me/254745427485?text=' + encodeURIComponent(text), '_blank', 'noopener,noreferrer');
+    });
+
+    document.getElementById('clearProofBtn').addEventListener('click', () => {
+      document.getElementById('paymentProofForm').reset();
+      document.getElementById('proofMessage').textContent = '';
+      proofPreview.style.display = 'none';
+      proofPreview.removeAttribute('src');
+      if (previewUrl) URL.revokeObjectURL(previewUrl);
+      previewUrl = null;
+    });
+
+    calculate();
+  </script>
+</body>
+</html>
